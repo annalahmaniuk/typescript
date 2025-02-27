@@ -1,8 +1,8 @@
 
-function triangle(value1: number, type1: "leg" | "hypotenuse" | "adjacent angle" | "opposite angle", 
-  value2: number, type2: "leg" | "hypotenuse" | "adjacent angle" | "opposite angle"): "success" | "failed" {
+function triangle(value1: number, type1: "leg" | "hypotenuse" | "adjacent angle" | "opposite angle" | "angle", 
+  value2: number, type2: "leg" | "hypotenuse" | "adjacent angle" | "opposite angle" | "angle"): "success" | "failed" {
 console.log("Використання: triangle(value1, type1, value2, type2)");
-console.log("Доступні типи: 'leg' (катет), 'hypotenuse' (гіпотенуза), 'adjacent angle' (прилеглий кут), 'opposite angle' (протилежний кут)");
+console.log("Доступні типи: 'leg' (катет), 'hypotenuse' (гіпотенуза), 'adjacent angle' (прилеглий кут), 'opposite angle' (протилежний кут), 'angle' (кут)");
 
 let a: number, b: number, c: number, alpha: number, beta: number;
 
@@ -108,6 +108,17 @@ return 'failed';
 b = c * Math.cos(toRadians(beta));
 a = c * Math.sin(toRadians(beta));
 alpha = 90 - beta;
+} 
+else if (type1 === "hypotenuse" && type2 === "angle") {
+c = value1;
+alpha = value2;
+if (alpha <= 0 || alpha >= 90) {
+console.log("Помилка: некоректне значення кута.");
+return 'failed';
+}
+a = c * Math.sin(toRadians(alpha));
+b = c * Math.cos(toRadians(alpha));
+beta = 90 - alpha;
 } 
 else {
 console.log("Помилка: недостатньо даних або неправильний тип аргументу.");

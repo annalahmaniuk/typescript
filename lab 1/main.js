@@ -1,7 +1,6 @@
-
 function triangle(value1, type1, value2, type2) {
     console.log("Використання: triangle(value1, type1, value2, type2)");
-    console.log("Доступні типи: 'leg' (катет), 'hypotenuse' (гіпотенуза), 'adjacent angle' (прилеглий кут), 'opposite angle' (протилежний кут)");
+    console.log("Доступні типи: 'leg' (катет), 'hypotenuse' (гіпотенуза), 'adjacent angle' (прилеглий кут), 'opposite angle' (протилежний кут), 'angle' (кут)");
     var a, b, c, alpha, beta;
     function toRadians(degrees) {
         return degrees * Math.PI / 180;
@@ -103,6 +102,17 @@ function triangle(value1, type1, value2, type2) {
         b = c * Math.cos(toRadians(beta));
         a = c * Math.sin(toRadians(beta));
         alpha = 90 - beta;
+    }
+    else if (type1 === "hypotenuse" && type2 === "angle") {
+        c = value1;
+        alpha = value2;
+        if (alpha <= 0 || alpha >= 90) {
+            console.log("Помилка: некоректне значення кута.");
+            return 'failed';
+        }
+        a = c * Math.sin(toRadians(alpha));
+        b = c * Math.cos(toRadians(alpha));
+        beta = 90 - alpha;
     }
     else {
         console.log("Помилка: недостатньо даних або неправильний тип аргументу.");
